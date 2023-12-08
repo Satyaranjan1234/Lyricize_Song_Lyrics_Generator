@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lyricize - Song Lyrics Generator</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="content">
+        <h1>Lyricize</h1>
+        <p class="subtitle">Generate Lyrics for Your Melodies</p>
+        <form action="http://127.0.0.1:8000/home/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="initial_lyrics">Initial Lyrics:</label>
+                <textarea id="initial_lyrics" name="initial_lyrics" rows="1" required placeholder="Type your starting lyrics here..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="num_words">Number of Words:</label>
+                <input type="number" id="num_words" name="num_words" required>
+            </div>
+            <button type="submit">Create Lyrics</button>
+        </form>
+        <div class="generated-lyrics">
+            {% if lyrics %}
+            <h2>Generated Lyrics:</h2>
+            <p>{{ lyrics }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<style>
+    /* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.content {
+    padding: 50px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+    resize: none;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.generated-lyrics {
+    margin-top: 50px;
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.2em;
+    color: #444;
+}
+
+</style>
+</body>
+</html>
